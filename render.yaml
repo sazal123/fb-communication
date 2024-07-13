@@ -1,12 +1,20 @@
 services:
-  - type: web
-    name: example-app
-    env: docker
-    plan: free
-    dockerfilePath: ./Dockerfile
-    envVars:
-      - key: APP_ENV
-        value: local
-      - key: APP_KEY
-        value: 'base64:PuhhAGZ8MYodiow2vMrA8XYWWL/maaywrTUu5LKwu28='
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - APP_ENV=production
+      - APP_KEY='base64:PuhhAGZ8MYodiow2vMrA8XYWWL/maaywrTUu5LKwu28='
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
 
