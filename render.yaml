@@ -6,7 +6,7 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_ENV
-        value: production
+        value: local
       - key: APP_KEY
         value: 'base64:PuhhAGZ8MYodiow2vMrA8XYWWL/maaywrTUu5LKwu28='
-    
+
