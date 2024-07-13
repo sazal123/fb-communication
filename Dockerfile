@@ -18,8 +18,7 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libonig-dev \
-    libxml2-dev \
-    nginx
+    libxml2-dev
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
@@ -27,14 +26,14 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy existing application directory contents
+# Copy the application code
 COPY . /var/www/html
 
 # Set up permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Install Composer dependencies
-RUN composer install
+# Install Nginx
+RUN apt-get update && apt-get install -y nginx
 
 # Copy Nginx configuration file
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
