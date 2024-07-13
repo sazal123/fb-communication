@@ -34,7 +34,7 @@ COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Install Composer dependencies
-RUN composer install --optimize-autoloader --no-dev
+RUN composer install
 
 # Copy Nginx configuration file
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
