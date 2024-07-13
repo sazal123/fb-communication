@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: laravel-app
+    name: example-app
     env: docker
     plan: free
     dockerfilePath: ./Dockerfile
